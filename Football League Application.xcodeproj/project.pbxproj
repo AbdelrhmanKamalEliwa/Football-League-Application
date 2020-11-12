@@ -8,24 +8,34 @@
 
 /* Begin PBXBuildFile section */
 		F412168F255D9DFD002DB014 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F412168E255D9DFD002DB014 /* AppDelegate.swift */; };
-		F4121691255D9DFD002DB014 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4121690255D9DFD002DB014 /* SceneDelegate.swift */; };
-		F4121693255D9DFD002DB014 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4121692255D9DFD002DB014 /* ViewController.swift */; };
-		F4121696255D9DFD002DB014 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4121694255D9DFD002DB014 /* Main.storyboard */; };
 		F4121699255D9DFD002DB014 /* Football_League_Application.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F4121697255D9DFD002DB014 /* Football_League_Application.xcdatamodeld */; };
-		F412169B255D9DFE002DB014 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F412169A255D9DFE002DB014 /* Assets.xcassets */; };
+		F412169B255D9DFE002DB014 /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F412169A255D9DFE002DB014 /* Icons.xcassets */; };
 		F412169E255D9DFE002DB014 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F412169C255D9DFE002DB014 /* LaunchScreen.storyboard */; };
+		F41216D3255D9FE3002DB014 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F41216D2255D9FE3002DB014 /* Colors.xcassets */; };
+		F41216D8255DA104002DB014 /* EndPointRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41216D7255DA104002DB014 /* EndPointRouter.swift */; };
+		F41216DC255DA14F002DB014 /* APIEnvironmentPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41216DB255DA14F002DB014 /* APIEnvironmentPath.swift */; };
+		F41216E0255DA5F6002DB014 /* APIResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41216DF255DA5F6002DB014 /* APIResult.swift */; };
+		F41216E4255DA613002DB014 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41216E3255DA613002DB014 /* HTTPMethod.swift */; };
+		F41216E7255DA62D002DB014 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41216E6255DA62D002DB014 /* NetworkManager.swift */; };
+		F41216F4255DA8BE002DB014 /* LeaguesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41216F2255DA8BE002DB014 /* LeaguesVC.swift */; };
+		F41216F5255DA8BE002DB014 /* LeaguesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F41216F3255DA8BE002DB014 /* LeaguesVC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F412168B255D9DFD002DB014 /* Football League Application.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Football League Application.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F412168E255D9DFD002DB014 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F4121690255D9DFD002DB014 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F4121692255D9DFD002DB014 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		F4121695255D9DFD002DB014 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F4121698255D9DFD002DB014 /* Football_League_Application.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Football_League_Application.xcdatamodel; sourceTree = "<group>"; };
-		F412169A255D9DFE002DB014 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F412169A255D9DFE002DB014 /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icons.xcassets; sourceTree = "<group>"; };
 		F412169D255D9DFE002DB014 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F412169F255D9DFE002DB014 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F41216D2255D9FE3002DB014 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		F41216D7255DA104002DB014 /* EndPointRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPointRouter.swift; sourceTree = "<group>"; };
+		F41216DB255DA14F002DB014 /* APIEnvironmentPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnvironmentPath.swift; sourceTree = "<group>"; };
+		F41216DF255DA5F6002DB014 /* APIResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResult.swift; sourceTree = "<group>"; };
+		F41216E3255DA613002DB014 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		F41216E6255DA62D002DB014 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		F41216F2255DA8BE002DB014 /* LeaguesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaguesVC.swift; sourceTree = "<group>"; };
+		F41216F3255DA8BE002DB014 /* LeaguesVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaguesVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +68,157 @@
 		F412168D255D9DFD002DB014 /* Football League Application */ = {
 			isa = PBXGroup;
 			children = (
-				F412168E255D9DFD002DB014 /* AppDelegate.swift */,
-				F4121690255D9DFD002DB014 /* SceneDelegate.swift */,
-				F4121692255D9DFD002DB014 /* ViewController.swift */,
-				F4121694255D9DFD002DB014 /* Main.storyboard */,
-				F412169A255D9DFE002DB014 /* Assets.xcassets */,
-				F412169C255D9DFE002DB014 /* LaunchScreen.storyboard */,
-				F412169F255D9DFE002DB014 /* Info.plist */,
-				F4121697255D9DFD002DB014 /* Football_League_Application.xcdatamodeld */,
+				F41216A6255D9E18002DB014 /* Networking */,
+				F41216C8255D9E9F002DB014 /* Helpers */,
+				F41216CA255D9EA9002DB014 /* Models */,
+				F41216C9255D9EA6002DB014 /* Core */,
+				F41216C7255D9E79002DB014 /* Scences */,
+				F41216CC255D9EE2002DB014 /* Resources */,
+				F41216CB255D9ED0002DB014 /* Configurations */,
 			);
 			path = "Football League Application";
+			sourceTree = "<group>";
+		};
+		F41216A6255D9E18002DB014 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				F41216E6255DA62D002DB014 /* NetworkManager.swift */,
+				F41216DE255DA5DF002DB014 /* Entities */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		F41216C7255D9E79002DB014 /* Scences */ = {
+			isa = PBXGroup;
+			children = (
+				F41216EC255DA86D002DB014 /* Leagues */,
+			);
+			path = Scences;
+			sourceTree = "<group>";
+		};
+		F41216C8255D9E9F002DB014 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				F41216D6255DA0E8002DB014 /* APIs */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		F41216C9255D9EA6002DB014 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		F41216CA255D9EA9002DB014 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F41216CB255D9ED0002DB014 /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				F412169F255D9DFE002DB014 /* Info.plist */,
+			);
+			path = Configurations;
+			sourceTree = "<group>";
+		};
+		F41216CC255D9EE2002DB014 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F41216CF255D9F1C002DB014 /* Application */,
+				F41216CE255D9F15002DB014 /* CoreData */,
+				F41216CD255D9F0D002DB014 /* Assets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		F41216CD255D9F0D002DB014 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				F412169A255D9DFE002DB014 /* Icons.xcassets */,
+				F41216D2255D9FE3002DB014 /* Colors.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		F41216CE255D9F15002DB014 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				F4121697255D9DFD002DB014 /* Football_League_Application.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		F41216CF255D9F1C002DB014 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				F412169C255D9DFE002DB014 /* LaunchScreen.storyboard */,
+				F412168E255D9DFD002DB014 /* AppDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		F41216D6255DA0E8002DB014 /* APIs */ = {
+			isa = PBXGroup;
+			children = (
+				F41216D7255DA104002DB014 /* EndPointRouter.swift */,
+				F41216DB255DA14F002DB014 /* APIEnvironmentPath.swift */,
+			);
+			path = APIs;
+			sourceTree = "<group>";
+		};
+		F41216DE255DA5DF002DB014 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				F41216DF255DA5F6002DB014 /* APIResult.swift */,
+				F41216E3255DA613002DB014 /* HTTPMethod.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		F41216EC255DA86D002DB014 /* Leagues */ = {
+			isa = PBXGroup;
+			children = (
+				F41216EF255DA887002DB014 /* Router */,
+				F41216F0255DA890002DB014 /* Interactor */,
+				F41216EE255DA883002DB014 /* Presenter */,
+				F41216ED255DA877002DB014 /* Controller */,
+			);
+			path = Leagues;
+			sourceTree = "<group>";
+		};
+		F41216ED255DA877002DB014 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F41216F2255DA8BE002DB014 /* LeaguesVC.swift */,
+				F41216F3255DA8BE002DB014 /* LeaguesVC.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		F41216EE255DA883002DB014 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		F41216EF255DA887002DB014 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		F41216F0255DA890002DB014 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Interactor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,8 +279,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F412169E255D9DFE002DB014 /* LaunchScreen.storyboard in Resources */,
-				F412169B255D9DFE002DB014 /* Assets.xcassets in Resources */,
-				F4121696255D9DFD002DB014 /* Main.storyboard in Resources */,
+				F41216D3255D9FE3002DB014 /* Colors.xcassets in Resources */,
+				F41216F5255DA8BE002DB014 /* LeaguesVC.xib in Resources */,
+				F412169B255D9DFE002DB014 /* Icons.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,23 +293,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4121699255D9DFD002DB014 /* Football_League_Application.xcdatamodeld in Sources */,
-				F4121693255D9DFD002DB014 /* ViewController.swift in Sources */,
+				F41216DC255DA14F002DB014 /* APIEnvironmentPath.swift in Sources */,
+				F41216E4255DA613002DB014 /* HTTPMethod.swift in Sources */,
+				F41216D8255DA104002DB014 /* EndPointRouter.swift in Sources */,
+				F41216F4255DA8BE002DB014 /* LeaguesVC.swift in Sources */,
+				F41216E7255DA62D002DB014 /* NetworkManager.swift in Sources */,
+				F41216E0255DA5F6002DB014 /* APIResult.swift in Sources */,
 				F412168F255D9DFD002DB014 /* AppDelegate.swift in Sources */,
-				F4121691255D9DFD002DB014 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		F4121694255D9DFD002DB014 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F4121695255D9DFD002DB014 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		F412169C255D9DFE002DB014 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -291,7 +439,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "Football League Application/Info.plist";
+				INFOPLIST_FILE = "Football League Application/Configurations/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -309,7 +457,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "Football League Application/Info.plist";
+				INFOPLIST_FILE = "Football League Application/Configurations/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
