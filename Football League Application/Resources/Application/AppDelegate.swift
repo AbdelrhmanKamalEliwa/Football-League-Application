@@ -17,9 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.makeKeyAndVisible()
-        let mainVC = UIViewController(nibName: "LeaguesVC", bundle: nil)
+        let mainVC = LeaguesVC(nibName: "LeaguesVC", bundle: nil)
         let mainNC = UINavigationController(rootViewController: mainVC)
+        window?.makeKeyAndVisible()
         window?.rootViewController = mainNC
         
         return true

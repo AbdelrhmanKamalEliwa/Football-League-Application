@@ -11,6 +11,10 @@ struct APIService {
     static func baseURL() -> String {
         return APIEnvironmentPath.production.scheme() + APIEnvironmentPath.production.host() + "/v2/"
     }
+    
+    static func APIKey() -> String {
+        return APIEnvironmentPath.production.APIKey()
+    }
 }
 
 enum APIEnvironmentPath {
@@ -38,6 +42,17 @@ enum APIEnvironmentPath {
             return "api.football-data.org"
         case .production:
             return "api.football-data.org"
+        }
+    }
+    
+    func APIKey() -> String {
+        switch self {
+        case .development:
+            return "4093bfc758f041999f47b64337281f25"
+        case .testing:
+            return "4093bfc758f041999f47b64337281f25"
+        case .production:
+            return "4093bfc758f041999f47b64337281f25"
         }
     }
     

@@ -7,5 +7,6 @@ target 'Football League Application' do
 
   # Pods for Football League Application
     pod 'Kingfisher', '~> 5.0'
+    pod 'SVGKit'
     pod 'SVProgressHUD'
 end

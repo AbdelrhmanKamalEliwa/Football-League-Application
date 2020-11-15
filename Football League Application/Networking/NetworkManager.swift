@@ -11,10 +11,11 @@ class NetworkManager {
     
     public let session = URLSession(configuration: .default)
     
-    func request<T: Codable>(
-        url: URL, httpMethod: HTTPMethod, parameters: Data?,
-        headers: [String: String]?, completionHandler: @escaping(_ result: APIResult<T>) -> ())
-        -> URLSessionTask {
+    func request<T: Codable>(url: URL,
+                             httpMethod: HTTPMethod,
+                             parameters: Data?,
+                             headers: [String: String]?,
+                             completionHandler: @escaping(_ result: APIResult<T>) -> ()) -> URLSessionTask {
             
         // defining the type of method
         var urlRequest: URLRequest = URLRequest(url: url)
@@ -50,6 +51,7 @@ class NetworkManager {
                     let decodedData = try JSONDecoder().decode(T.self, from: jsonData)
                     completionHandler(.success(decodedData))
                 } catch let error {
+                    print(error)
                     completionHandler(.decodingFailure(error))
                 }
             }
