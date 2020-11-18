@@ -8,7 +8,9 @@
 import Foundation
 
 class LeaguesInteractor {
-    let networkManager = NetworkManager()
+    private let networkManager = NetworkManager()
+    private let leaguesCoreDataManager = LeaguesCoreDataManager()
+    private let defaults = UserDefaults.standard
     
     func getLeagues(completionHandler: @escaping (LeaguesModel?, Error?) -> ()) {
         _ = networkManager.request(
@@ -27,6 +29,24 @@ class LeaguesInteractor {
         }
     }
     
+    func cachData(_ leagues: [Competition]) {
+        if let leaguesCachStatus = defaults.object(forKey: "LeaguesCachingStatus") as? Bool {
+            if leaguesCachStatus {
+                leaguesCoreDataManager.updateLeagues(leagues)
+                defaults.setValue(true, forKey: "LeaguesCachingStatus")
+            } else {
+                leaguesCoreDataManager.saveLeagues(leagues)
+                defaults.setValue(true, forKey: "LeaguesCachingStatus")
+            }
+        } else {
+            leaguesCoreDataManager.saveLeagues(leagues)
+            defaults.setValue(true, forKey: "LeaguesCachingStatus")
+        }
+    }
+    
+    func loadCachedData() -> [Leagues] {
+        leaguesCoreDataManager.loadLeagues()
+    }
 //    func getLeagueMatches(for leagueId: Int, completionHandler: @escaping (LeaguesModel?, Error?) -> ()) {
 //        let headers = ["X-Auth-Token": EndPointRouter.APIKey]
 //        _ = networkManager.request(

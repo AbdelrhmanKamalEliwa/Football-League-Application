@@ -9,11 +9,11 @@ import UIKit
 import SVProgressHUD
 
 class TeamInformationVC: BaseWireframe {
-    // MARK: Properties
+    // MARK: - Properties
     @IBOutlet private weak var tableView: UITableView!
     internal var presenter: TeamInformationVCPresenter?
     
-    // MARK: Lifecycle
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.isHidden = true

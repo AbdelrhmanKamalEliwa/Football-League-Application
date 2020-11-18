@@ -8,14 +8,14 @@
 import UIKit
 
 class PlayerCell: UITableViewCell {
-    // MARK: Properties
+    // MARK: - Properties
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var positionLabel: UILabel!
     @IBOutlet private weak var nationalityLabel: UILabel!
     @IBOutlet private weak var positionStackView: UIStackView!
     @IBOutlet private weak var nationalityStackView: UIStackView!
     
-    // MARK: Lifecycle
+    // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
     }

@@ -9,4 +9,5 @@ target 'Football League Application' do
     pod 'Kingfisher', '~> 5.0'
     pod 'SVGKit'
     pod 'SVProgressHUD'
+    pod 'ReachabilitySwift'
 end

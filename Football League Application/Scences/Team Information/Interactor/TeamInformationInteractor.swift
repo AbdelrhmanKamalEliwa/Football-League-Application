@@ -8,7 +8,9 @@
 import Foundation
 
 class TeamInformationInteractor {
-    let networkManager = NetworkManager()
+    private let networkManager = NetworkManager()
+    private let teamInfoCoreDataManager = TeamInfoCoreDataManager()
+    private let defaults = UserDefaults.standard
     
     func getTeamInfo(for teamId: Int, completionHandler: @escaping (TeamInfoModel?, Error?) -> ()) {
         let headers = ["X-Auth-Token": EndPointRouter.APIKey]
@@ -26,5 +28,28 @@ class TeamInformationInteractor {
                 completionHandler(nil, error)
             }
         }
+    }
+    
+    func cachData(_ teamInfo: TeamInfoModel, _ teamId: Int) {
+        if let teamsInfoCachStatus = defaults.object(forKey: "TeamsInfoCachingStatus\(teamId)") as? Bool {
+            if teamsInfoCachStatus {
+                teamInfoCoreDataManager.updateTeamsInfo(teamInfo, for: teamId)
+                defaults.setValue(true, forKey: "TeamsInfoCachingStatus\(teamId)")
+            } else {
+                teamInfoCoreDataManager.saveTeamsInfo(teamInfo)
+                defaults.setValue(true, forKey: "TeamsInfoCachingStatus\(teamId)")
+            }
+        } else {
+            teamInfoCoreDataManager.saveTeamsInfo(teamInfo)
+            defaults.setValue(true, forKey: "TeamsInfoCachingStatus\(teamId)")
+        }
+    }
+    
+    func loadCachedTeamInfo(for teamId: Int) -> TeamInfo? {
+        teamInfoCoreDataManager.loadTeamInfo(for: teamId)
+    }
+    
+    func loadCachedTeamPlayers(for teamId: Int) -> [PlayersInfo] {
+        teamInfoCoreDataManager.loadTeamPlayers(for: teamId)
     }
 }

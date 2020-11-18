@@ -9,19 +9,19 @@ import UIKit
 
 class LeagueCell: UITableViewCell {
 
-    //MARK: Properties
+    // MARK: - Properties
     @IBOutlet private weak var longNameLabel: UILabel!
     @IBOutlet private weak var shortNameLabel: UILabel!
     @IBOutlet private weak var numberOfTeamsLabel: UILabel!
     @IBOutlet private weak var numberOfGamesLabel: UILabel!
     
-    //MARK: Lifecycle
+    // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 }
 
-//MARK: - Display Cell Data
+// MARK: - Display Cell Data
 extension LeagueCell: LeaguesCellView {
     func displayLongName(_ name: String) {
         longNameLabel.text = name

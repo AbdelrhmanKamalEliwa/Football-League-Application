@@ -9,11 +9,11 @@ import UIKit
 import SVProgressHUD
 
 class LeagueDetailsVC: BaseWireframe {
-    // MARK: Properties
+    // MARK: - Properties
     @IBOutlet private weak var collectionView: UICollectionView!
     internal var presenter: LeagueDetailsVCPresenter?
     
-    // MARK: Lifecycle
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar(navBarTitle: .LeagueDetails)

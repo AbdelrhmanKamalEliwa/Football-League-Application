@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 
 class TeamInfoCell: UITableViewCell {
-    // MARK: Properties
+    // MARK: - Properties
     @IBOutlet weak var teamLogoImageView: UIImageView!
     @IBOutlet private weak var nameStackView: UIStackView!
     @IBOutlet private weak var nameLabel: UILabel!
@@ -28,7 +28,7 @@ class TeamInfoCell: UITableViewCell {
     @IBOutlet private weak var venueStackView: UIStackView!
     @IBOutlet private weak var venueLabel: UILabel!
     
-    // MARK: Lifecycle
+    // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
     }

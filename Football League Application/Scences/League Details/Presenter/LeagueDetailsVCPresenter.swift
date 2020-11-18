@@ -7,7 +7,7 @@
 
 import Foundation
 
-//MARK: TeamsView Protocol
+// MARK: - TeamsView Protocol
 protocol TeamsView: class {
     var presenter: LeagueDetailsVCPresenter? { get set }
     func showIndicator()
@@ -16,7 +16,7 @@ protocol TeamsView: class {
     func showError(error: String)
 }
 
-//MARK: TeamCellView Protocol
+// MARK: - TeamCellView Protocol
 protocol TeamCellView {
     func displayLongName(_ name: String)
     func displayShortName(_ name: String, isHidden: Bool)
@@ -24,14 +24,16 @@ protocol TeamCellView {
 }
 
 class LeagueDetailsVCPresenter {
-    //MARK: Properties
+    // MARK: - Properties
     private weak var view: TeamsView?
     private let interactor: LeagueDetailsInteractor
     private let router: LeagueDetailsRouter
     private let leagueId: Int
     private var teamsData: [Team] = []
+    private var cachedTeams: [Teams] = []
+    private var cach = false
     
-    //MARK: Init
+    // MARK: - Init
     init(view: TeamsView?, interactor: LeagueDetailsInteractor, router: LeagueDetailsRouter, leagueId: Int) {
         self.view = view
         self.interactor = interactor
@@ -39,7 +41,7 @@ class LeagueDetailsVCPresenter {
         self.leagueId = leagueId
     }
     
-    //MARK: Methods
+    // MARK: - Methods
     func viewDidLoad() {
         getTeams()
     }
@@ -50,35 +52,58 @@ class LeagueDetailsVCPresenter {
             guard let self = self else { return }
             self.view?.hideIndicator()
             if let error = error {
-                self.view?.showError(error: error.localizedDescription)
+                self.cach = true
+                DispatchQueue.main.async {
+                    self.cachedTeams = self.interactor.loadCachedData(for: self.leagueId)
+                    guard !self.cachedTeams.isEmpty else {
+                        self.view?.showError(error: error.localizedDescription)
+                        return
+                    }
+                    self.view?.fetchDataSuccess()
+                }
             } else {
                 guard let leagueTeams = leagueTeams?.teams else {
                     self.view?.showError(error: "Data not founded")
                     return
                 }
                 self.teamsData = leagueTeams
+                self.cach = false
                 self.view?.fetchDataSuccess()
+                DispatchQueue.main.async {
+                    self.interactor.cachData(leagueTeams, self.leagueId)
+                }
             }
         }
     }
     
     func numberOfLeagues() -> Int {
-        teamsData.count
+        return cach ? cachedTeams.count : teamsData.count
     }
     
     func cellConfiguration(_ cell: TeamCellView, for item: Int) {
-        let team = teamsData[item]
-        cell.displayLogo(team.crestURL)
-        cell.displayLongName(team.name)
-        if let shortName = team.shortName {
-            cell.displayShortName(shortName, isHidden: false)
+        if cach {
+            let team = cachedTeams[item]
+            cell.displayLogo(team.teamLogo)
+            cell.displayLongName(team.teamName ?? "")
+            if let shortName = team.teamShortName {
+                cell.displayShortName(shortName, isHidden: false)
+            } else {
+                cell.displayShortName("", isHidden: true)
+            }
         } else {
-            cell.displayShortName("", isHidden: true)
+            let team = teamsData[item]
+            cell.displayLogo(team.crestURL)
+            cell.displayLongName(team.name)
+            if let shortName = team.shortName {
+                cell.displayShortName(shortName, isHidden: false)
+            } else {
+                cell.displayShortName("", isHidden: true)
+            }
         }
     }
     
     func didSelectItem(at item: Int) {
-        let teamId = teamsData[item].id
+        let teamId = cach ? Int(cachedTeams[item].teamId) : teamsData[item].id
         router.navigateToTeamInformationScreen(from: view, teamId: teamId)
     }
 }

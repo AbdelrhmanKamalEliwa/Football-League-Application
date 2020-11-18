@@ -9,19 +9,21 @@ import UIKit
 import Kingfisher
 
 class TeamCell: UICollectionViewCell {
-    // MARK: Properties
+    // MARK: - Properties
     @IBOutlet private weak var teamLogoImageView: UIImageView!
     @IBOutlet private weak var teamLongNameLabel: UILabel!
     @IBOutlet private weak var teamShortNameLabel: UILabel!
     
-    // MARK: Lifecycle
+    // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
+        layoutIfNeeded()
     }
 }
 
 // MARK: - Display Cell Data
 extension TeamCell: TeamCellView {
+    
     func displayLongName(_ name: String) {
         teamLongNameLabel.text = name
     }
@@ -32,12 +34,13 @@ extension TeamCell: TeamCellView {
     }
     
     func displayLogo(_ imageUrl: String?) {
-        if imageUrl != nil {
-            guard let url = URL(string: imageUrl!) else { return }
+        if let imageUrl = imageUrl {
+            guard let url = URL(string: imageUrl) else { return }
             teamLogoImageView.kf.indicatorType = .activity
             teamLogoImageView.kf.setImage(
-            with: url, placeholder: nil,
-                options: [.processor(SVGImgProcessor())], progressBlock: nil) { [weak self] (result) in
+                with: url, placeholder: nil,
+                options: [.processor(SVGImgProcessor())],
+                progressBlock: nil) { [weak self] (result) in
                 guard let self = self else { return }
                 switch result {
                 case .success(let image):
@@ -47,6 +50,8 @@ extension TeamCell: TeamCellView {
                     return
                 }
             }
+        } else {
+            self.teamLogoImageView.image = UIImage(named: "logo.not.found")?.imageFlippedForRightToLeftLayoutDirection()
         }
     }
 }

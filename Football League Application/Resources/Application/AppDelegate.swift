@@ -12,16 +12,15 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
+//        AppReachability.shared.setRechabilityNotifier()
         window = UIWindow(frame: UIScreen.main.bounds)
         let mainVC = LeaguesVC(nibName: "LeaguesVC", bundle: nil)
         let mainNC = UINavigationController(rootViewController: mainVC)
         window?.makeKeyAndVisible()
         window?.rootViewController = mainNC
-        
         return true
     }
     
@@ -80,7 +79,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Core Data Saving support
 
-    func saveContext () {
+    func saveContext() {
         let context = persistentContainer.viewContext
         if context.hasChanges {
             do {

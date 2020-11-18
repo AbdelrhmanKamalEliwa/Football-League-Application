@@ -5,12 +5,14 @@ PODS:
   - Kingfisher (5.14.0):
     - Kingfisher/Core (= 5.14.0)
   - Kingfisher/Core (5.14.0)
+  - ReachabilitySwift (5.0.0)
   - SVGKit (2.1.1):
     - CocoaLumberjack (~> 3.0)
   - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
   - Kingfisher (~> 5.0)
+  - ReachabilitySwift
   - SVGKit
   - SVProgressHUD
 
@@ -18,15 +20,17 @@ SPEC REPOS:
   trunk:
     - CocoaLumberjack
     - Kingfisher
+    - ReachabilitySwift
     - SVGKit
     - SVProgressHUD
 
 SPEC CHECKSUMS:
   CocoaLumberjack: e8955b9d337ac307103b0a34fd141c32f27e53c5
   Kingfisher: 7b64389a43139c903ec434788344c288217c792d
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   SVGKit: 652cdf7bef8bec8564d04a8511d3ab50c7595fac
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 0e9e2728459b9c7d1da8e3758c056cb76776bbaa
+PODFILE CHECKSUM: 9a4f47784fe83e7d82ec5d1238c9bd47c488c8ce
 
 COCOAPODS: 1.8.4

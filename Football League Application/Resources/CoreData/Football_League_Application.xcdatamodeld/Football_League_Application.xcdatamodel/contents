@@ -1,4 +1,46 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19H15" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Leagues" representedClassName="Leagues" syncable="YES">
+        <attribute name="leagueId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="leagueName" optional="YES" attributeType="String"/>
+        <attribute name="leagueShortName" optional="YES" attributeType="String"/>
+        <attribute name="numberOfGames" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="numberOfTeams" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="teams" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Teams" inverseName="league" inverseEntity="Teams"/>
+    </entity>
+    <entity name="PlayersInfo" representedClassName="PlayersInfo" syncable="YES">
+        <attribute name="playerId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="playerName" optional="YES" attributeType="String"/>
+        <attribute name="playerNationality" optional="YES" attributeType="String"/>
+        <attribute name="playerPosition" optional="YES" attributeType="String"/>
+        <attribute name="teamInfoId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="TeamInfo" representedClassName="TeamInfo" syncable="YES">
+        <attribute name="teamAddress" optional="YES" attributeType="String"/>
+        <attribute name="teamEmail" optional="YES" attributeType="String"/>
+        <attribute name="teamFounded" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="teamId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="teamImageLogo" optional="YES" attributeType="String"/>
+        <attribute name="teamName" optional="YES" attributeType="String"/>
+        <attribute name="teamPhone" optional="YES" attributeType="String"/>
+        <attribute name="teamShortName" optional="YES" attributeType="String"/>
+        <attribute name="teamVenue" optional="YES" attributeType="String"/>
+        <attribute name="teamWebsite" optional="YES" attributeType="String"/>
+        <relationship name="playersInfo" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PlayersInfo"/>
+    </entity>
+    <entity name="Teams" representedClassName="Teams" syncable="YES">
+        <attribute name="leagueId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="teamId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="teamLogo" optional="YES" attributeType="String"/>
+        <attribute name="teamName" optional="YES" attributeType="String"/>
+        <attribute name="teamShortName" optional="YES" attributeType="String"/>
+        <relationship name="league" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Leagues" inverseName="teams" inverseEntity="Leagues"/>
+        <relationship name="teamInfo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TeamInfo"/>
+    </entity>
+    <elements>
+        <element name="Leagues" positionX="-26.265625" positionY="-347.390625" width="128" height="133"/>
+        <element name="PlayersInfo" positionX="83.6484375" positionY="45.7265625" width="128" height="118"/>
+        <element name="TeamInfo" positionX="-161.359375" positionY="-3.97265625" width="128" height="208"/>
+        <element name="Teams" positionX="-202.7578125" positionY="-187.77734375" width="128" height="148"/>
+    </elements>
 </model>

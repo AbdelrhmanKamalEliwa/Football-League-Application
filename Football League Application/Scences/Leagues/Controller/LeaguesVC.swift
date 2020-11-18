@@ -9,13 +9,13 @@ import UIKit
 import SVProgressHUD
 
 class LeaguesVC: BaseWireframe {
-    //MARK: Properties
+    // MARK: - Properties
     @IBOutlet private weak var tableView: UITableView!
     internal var presenter: LeaguesVCPresenter?
     private let interactor = LeaguesInteractor()
     private let router = LeaguesRouter()
     
-    //MARK: Lifecycle
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter = LeaguesVCPresenter(
@@ -28,7 +28,7 @@ class LeaguesVC: BaseWireframe {
     }
 }
 
-//MARK: - Presenter Delegate
+// MARK: - Presenter Delegate
 extension LeaguesVC: LeaguesView {
     func showIndicator() {
         SVProgressHUD.show()
@@ -58,7 +58,7 @@ extension LeaguesVC: LeaguesView {
     }
 }
 
-//MARK: - Setup TableView
+// MARK: - Setup TableView
 extension LeaguesVC: UITableViewDelegate, UITableViewDataSource {
     private enum TableViewConstants {
         static let nibName = "LeagueCell"

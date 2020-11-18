@@ -7,7 +7,7 @@
 
 import Foundation
 
-//MARK: LeaguesView Protocol
+// MARK: - LeaguesView Protocol
 protocol TeamInformationView: class {
     var presenter: TeamInformationVCPresenter? { get set }
     func showIndicator()
@@ -16,7 +16,7 @@ protocol TeamInformationView: class {
     func showError(error: String)
 }
 
-//MARK: TeamInfoCellView Protocol
+// MARK: - TeamInfoCellView Protocol
 protocol TeamInfoCellView {
     func displayLogoImage(_ imageUrl: String?)
     func displayTeamName(_ name: String, isHidden: Bool)
@@ -29,7 +29,7 @@ protocol TeamInfoCellView {
     func displayTeamVenue(_ venue: String, isHidden: Bool)
 }
 
-//MARK: PlayerCellView Protocol
+// MARK: - PlayerCellView Protocol
 protocol PlayerCellView {
     func displayPlayerName(_ name: String)
     func displayPlayerPosition(_ position: String, isHidden: Bool)
@@ -37,14 +37,16 @@ protocol PlayerCellView {
 }
 
 class TeamInformationVCPresenter {
-    //MARK: Properties
+    // MARK: - Properties
     private weak var view: TeamInformationView?
     private let interactor: TeamInformationInteractor
     private let router: TeamInformationRouter
     private let teamId: Int
+    private var cach = false
     private var teamInfoData: TeamInfoModel?
-    
-    //MARK: Init
+    private var cachedTeamInfoData: TeamInfo?
+    private var cachedTeamInfoPlayers: [PlayersInfo] = []
+    // MARK: - Init
     init(view: TeamInformationView?, interactor: TeamInformationInteractor, router: TeamInformationRouter, teamId: Int) {
         self.view = view
         self.interactor = interactor
@@ -52,7 +54,7 @@ class TeamInformationVCPresenter {
         self.teamId = teamId
     }
     
-    //MARK: Methods
+    // MARK: - Methods
     func viewDidLoad() {
         getTeams()
     }
@@ -63,88 +65,151 @@ class TeamInformationVCPresenter {
             guard let self = self else { return }
             self.view?.hideIndicator()
             if let error = error {
-                self.view?.showError(error: error.localizedDescription)
+                self.cach = true
+                DispatchQueue.main.async {
+                    self.cachedTeamInfoData = self.interactor.loadCachedTeamInfo(for: self.teamId)
+                    self.cachedTeamInfoPlayers = self.interactor.loadCachedTeamPlayers(for: self.teamId)
+                    guard
+                        let _ = self.cachedTeamInfoData,
+                        !self.cachedTeamInfoPlayers.isEmpty else {
+                        self.view?.showError(error: error.localizedDescription)
+                        return
+                    }
+                    self.view?.fetchDataSuccess()
+                }
             } else {
                 guard let teamInfo = teamInfo else {
                     self.view?.showError(error: "Data not founded")
                     return
                 }
                 self.teamInfoData = teamInfo
+                self.cach = false
                 self.view?.fetchDataSuccess()
+                DispatchQueue.main.async {
+                    self.interactor.cachData(teamInfo, self.teamId)
+                }
             }
         }
     }
     
     func titleForHeaderInSection(for section: Int) -> String {
-        if section == 1 {
-            return "Players Information"
-        } else {
-            return ""
-        }
+        section == 1 ? "Players Information" : ""
     }
     
     func numberOfSections() -> Int { 2 }
     
     func numberOfRowsInSection(for section: Int) -> Int {
-        if section == 0 {
-            return 1
-        } else {
-            return teamInfoData?.squad?.count ?? 0
+        if section == 0 { return 1 }
+        else {
+            return cach ? cachedTeamInfoPlayers.count : (teamInfoData?.squad?.count ?? 0)
         }
     }
     
+    // MARK: - TeamInfo
     func teamInfoCellConfiguration(_ cell: TeamInfoCellView, for index: Int) {
-        guard let teamInfo = teamInfoData else { return }
-        cell.displayLogoImage(teamInfo.crestURL)
-        
-        if let name = teamInfo.name {
+        setTeamInfo(cell, for: index)
+    }
+    
+    private func setTeamInfo(_ cell: TeamInfoCellView, for index: Int) {
+        if cach {
+            guard let teamInfo = cachedTeamInfoData else { return }
+            cell.displayLogoImage(teamInfo.teamImageLogo)
+            setTeamName(cell, teamInfo.teamName)
+            setTeamShortName(cell, teamInfo.teamShortName)
+            setTeamAddress(cell, teamInfo.teamAddress)
+            setTeamWebsite(cell, teamInfo.teamWebsite)
+            setTeamPhone(cell, teamInfo.teamPhone)
+            setTeamEmail(cell, teamInfo.teamEmail)
+            setTeamFounded(cell, Int(teamInfo.teamFounded))
+            setTeamVenue(cell, teamInfo.teamVenue)
+        } else {
+            guard let teamInfo = teamInfoData else { return }
+            cell.displayLogoImage(teamInfo.crestURL)
+            setTeamName(cell, teamInfo.name)
+            setTeamShortName(cell, teamInfo.shortName)
+            setTeamAddress(cell, teamInfo.address)
+            setTeamWebsite(cell, teamInfo.website)
+            setTeamPhone(cell, teamInfo.phone)
+            setTeamEmail(cell, teamInfo.email)
+            setTeamFounded(cell, teamInfo.founded)
+            setTeamVenue(cell, teamInfo.venue)
+        }
+    }
+    
+    private func setTeamName(_ cell: TeamInfoCellView,_ name: String?) {
+        if let name = name {
             cell.displayTeamName(name, isHidden: false)
         } else {
             cell.displayTeamName("", isHidden: true)
         }
-        
-        if let shortName = teamInfo.shortName {
+    }
+    
+    private func setTeamShortName(_ cell: TeamInfoCellView,_ shortName: String?) {
+        if let shortName = shortName {
             cell.displayTeamShortName(shortName, isHidden: false)
         } else {
             cell.displayTeamShortName("", isHidden: true)
         }
-        
-        if let address = teamInfo.address {
+    }
+    
+    private func setTeamAddress(_ cell: TeamInfoCellView,_ address: String?) {
+        if let address = address {
             cell.displayTeamAddress(address, isHidden: false)
         } else {
             cell.displayTeamAddress("", isHidden: true)
         }
-        
-        if let phone = teamInfo.phone {
+    }
+    
+    private func setTeamWebsite(_ cell: TeamInfoCellView,_ website: String?) {
+        if let website = website {
+            cell.displayTeamWebsite(website, isHidden: false)
+        } else {
+            cell.displayTeamWebsite("", isHidden: true)
+        }
+    }
+    
+    private func setTeamPhone(_ cell: TeamInfoCellView,_ phone: String?) {
+        if let phone = phone {
             cell.displayTeamPhone(phone, isHidden: false)
         } else {
             cell.displayTeamPhone("", isHidden: true)
         }
-        
-        if let email = teamInfo.email {
+    }
+    
+    private func setTeamEmail(_ cell: TeamInfoCellView,_ email: String?) {
+        if let email = email {
             cell.displayTeamEmail(email, isHidden: false)
         } else {
             cell.displayTeamEmail("", isHidden: true)
         }
-        
-        if let founded = teamInfo.founded {
+    }
+    
+    private func setTeamFounded(_ cell: TeamInfoCellView,_ founded: Int?) {
+        if let founded = founded {
             cell.displayTeamFounded(String(founded), isHidden: false)
         } else {
             cell.displayTeamFounded("", isHidden: true)
         }
-        
-        if let venue = teamInfo.venue {
+    }
+    
+    private func setTeamVenue(_ cell: TeamInfoCellView,_ venue: String?) {
+        if let venue = venue {
             cell.displayTeamVenue(venue, isHidden: false)
         } else {
             cell.displayTeamVenue("", isHidden: true)
         }
     }
     
+    // MARK: - PlayersInfo
     func playerCellConfiguration(_ cell: PlayerCellView, for index: Int) {
+        cach ? setCashedPlayerData(cell, for: index) : setPlayersData(cell, for: index)
+    }
+    
+    private func setPlayersData(_ cell: PlayerCellView, for index: Int) {
         guard let players = teamInfoData?.squad else { return }
         let player = players[index]
         cell.displayPlayerName(player.name)
-
+        
         if let position = player.position {
             cell.displayPlayerPosition(position, isHidden: false)
         } else {
@@ -156,6 +221,23 @@ class TeamInformationVCPresenter {
         } else {
             cell.displayPlayerNationality("", isHidden: true)
         }
+    }
+    
+    private func setCashedPlayerData(_ cell: PlayerCellView, for index: Int) {
+        guard !cachedTeamInfoPlayers.isEmpty else { return }
+        let player = cachedTeamInfoPlayers[index]
+        cell.displayPlayerName(player.playerName ?? "")
         
+        if let position = player.playerPosition {
+            cell.displayPlayerPosition(position, isHidden: false)
+        } else {
+            cell.displayPlayerPosition("", isHidden: true)
+        }
+
+        if let nationality = player.playerNationality {
+            cell.displayPlayerNationality(nationality, isHidden: false)
+        } else {
+            cell.displayPlayerNationality("", isHidden: true)
+        }
     }
 }
