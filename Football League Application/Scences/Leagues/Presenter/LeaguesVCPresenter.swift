@@ -20,10 +20,11 @@ protocol LeaguesView: class {
 
 // MARK: - LeaguesCellView Protocol
 protocol LeaguesCellView {
-    func displayLongName(_ name: String)
-    func displayShortName(_ name: String, isHidden: Bool)
-    func displayNumberOfTeams(_ number: String)
-    func displayNumberOfGames(_ number: String)
+    func displayName(_ name: String)
+    func displayArea(_ name: String, isHidden: Bool)
+    func displayStartDate(_ date: String)
+    func displayEndDate(_ date: String)
+    func setChevronIconStatus(isHidden: Bool)
 }
 
 class LeaguesVCPresenter {
@@ -81,25 +82,25 @@ class LeaguesVCPresenter {
     func cellConfiguration(_ cell: LeaguesCellView, for index: Int) {
         if cach {
             let league = cachedLeagues[index]
-            cell.displayLongName(league.leagueName ?? "")
+            cell.displayName(league.leagueName ?? "")
             
-            if let shortName = league.leagueShortName {
-                cell.displayShortName(shortName, isHidden: false)
+            if let areaName = league.areaName {
+                cell.displayArea(areaName, isHidden: false)
             } else {
-                cell.displayShortName("", isHidden: true)
+                cell.displayArea("", isHidden: true)
             }
         } else {
             let league = leaguesData[index]
-            cell.displayLongName(league.name)
+            cell.displayName(league.name)
             
             if let shortName = league.code {
-                cell.displayShortName(shortName, isHidden: false)
+                cell.displayArea(shortName, isHidden: false)
             } else {
-                cell.displayShortName("", isHidden: true)
+                cell.displayArea("", isHidden: true)
             }
         }
-        cell.displayNumberOfTeams("0")
-        cell.displayNumberOfGames("0")
+        cell.displayStartDate("0")
+        cell.displayEndDate("0")
     }
     
     func didSelectRow(at index: Int) {

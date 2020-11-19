@@ -2,7 +2,7 @@
 //  Leagues+CoreDataProperties.swift
 //  Football League Application
 //
-//  Created by Abdelrhman Eliwa on 11/17/20.
+//  Created by Abdelrhman Eliwa on 11/19/20.
 //
 //
 
@@ -18,9 +18,9 @@ extension Leagues {
 
     @NSManaged public var leagueId: Int64
     @NSManaged public var leagueName: String?
-    @NSManaged public var leagueShortName: String?
-    @NSManaged public var numberOfGames: Int64
-    @NSManaged public var numberOfTeams: Int64
+    @NSManaged public var areaName: String?
+    @NSManaged public var startDate: String?
+    @NSManaged public var endDate: String?
     @NSManaged public var teams: NSSet?
 
 }

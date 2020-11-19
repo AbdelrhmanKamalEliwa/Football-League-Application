@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -10,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LeaguesVC" customModule="Football_League_Application" customModuleProvider="target">
             <connections>
+                <outlet property="competitionsSegmentedControl" destination="a3g-TV-Dpl" id="TQB-EQ-7Lo"/>
                 <outlet property="tableView" destination="w0t-Cx-CVI" id="CwS-rs-CJf"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -23,14 +25,23 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                     <color key="backgroundColor" name="AppBlack1"/>
                 </tableView>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="a3g-TV-Dpl">
+                    <rect key="frame" x="46.5" y="811" width="321" height="32"/>
+                    <segments>
+                        <segment title="All Competitions"/>
+                        <segment title="Available Competitions"/>
+                    </segments>
+                </segmentedControl>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="AppBlack1"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="a3g-TV-Dpl" secondAttribute="bottom" constant="20" id="7AP-aB-j5h"/>
                 <constraint firstItem="w0t-Cx-CVI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="EK8-GR-zyZ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="w0t-Cx-CVI" secondAttribute="trailing" id="Efu-fp-Lbs"/>
                 <constraint firstAttribute="bottom" secondItem="w0t-Cx-CVI" secondAttribute="bottom" id="Qz1-Ti-3cP"/>
                 <constraint firstItem="w0t-Cx-CVI" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="a0E-He-oif"/>
+                <constraint firstItem="a3g-TV-Dpl" firstAttribute="centerX" secondItem="w0t-Cx-CVI" secondAttribute="centerX" id="aWx-om-hgt"/>
             </constraints>
             <point key="canvasLocation" x="139" y="117"/>
         </view>

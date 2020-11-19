@@ -20,7 +20,7 @@ protocol TeamInformationView: class {
 protocol TeamInfoCellView {
     func displayLogoImage(_ imageUrl: String?)
     func displayTeamName(_ name: String, isHidden: Bool)
-    func displayTeamShortName(_ shortName: String, isHidden: Bool)
+    func displayTeamArea(_ name: String, isHidden: Bool)
     func displayTeamAddress(_ address: String, isHidden: Bool)
     func displayTeamPhone(_ phone: String, isHidden: Bool)
     func displayTeamWebsite(_ website: String, isHidden: Bool)
@@ -99,10 +99,11 @@ class TeamInformationVCPresenter {
     func numberOfSections() -> Int { 2 }
     
     func numberOfRowsInSection(for section: Int) -> Int {
-        if section == 0 { return 1 }
-        else {
-            return cach ? cachedTeamInfoPlayers.count : (teamInfoData?.squad?.count ?? 0)
-        }
+        section == 0 ? 1 : (cach ? cachedTeamInfoPlayers.count : (teamInfoData?.squad?.count ?? 0))
+//        if section == 0 { return 1 }
+//        else {
+//            return cach ? cachedTeamInfoPlayers.count : (teamInfoData?.squad?.count ?? 0)
+//        }
     }
     
     // MARK: - TeamInfo
@@ -115,7 +116,7 @@ class TeamInformationVCPresenter {
             guard let teamInfo = cachedTeamInfoData else { return }
             cell.displayLogoImage(teamInfo.teamImageLogo)
             setTeamName(cell, teamInfo.teamName)
-            setTeamShortName(cell, teamInfo.teamShortName)
+            setTeamAreaName(cell, teamInfo.teamArea)
             setTeamAddress(cell, teamInfo.teamAddress)
             setTeamWebsite(cell, teamInfo.teamWebsite)
             setTeamPhone(cell, teamInfo.teamPhone)
@@ -126,7 +127,7 @@ class TeamInformationVCPresenter {
             guard let teamInfo = teamInfoData else { return }
             cell.displayLogoImage(teamInfo.crestURL)
             setTeamName(cell, teamInfo.name)
-            setTeamShortName(cell, teamInfo.shortName)
+            setTeamAreaName(cell, teamInfo.area?.name)
             setTeamAddress(cell, teamInfo.address)
             setTeamWebsite(cell, teamInfo.website)
             setTeamPhone(cell, teamInfo.phone)
@@ -144,11 +145,11 @@ class TeamInformationVCPresenter {
         }
     }
     
-    private func setTeamShortName(_ cell: TeamInfoCellView,_ shortName: String?) {
+    private func setTeamAreaName(_ cell: TeamInfoCellView,_ shortName: String?) {
         if let shortName = shortName {
-            cell.displayTeamShortName(shortName, isHidden: false)
+            cell.displayTeamArea(shortName, isHidden: false)
         } else {
-            cell.displayTeamShortName("", isHidden: true)
+            cell.displayTeamArea("", isHidden: true)
         }
     }
     

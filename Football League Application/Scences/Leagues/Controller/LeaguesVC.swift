@@ -11,6 +11,7 @@ import SVProgressHUD
 class LeaguesVC: BaseWireframe {
     // MARK: - Properties
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var competitionsSegmentedControl: UISegmentedControl!
     internal var presenter: LeaguesVCPresenter?
     private let interactor = LeaguesInteractor()
     private let router = LeaguesRouter()

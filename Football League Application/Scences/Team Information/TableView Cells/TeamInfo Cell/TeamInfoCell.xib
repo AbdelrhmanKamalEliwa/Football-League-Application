@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -46,10 +47,10 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="LwK-pt-NbH" userLabel="Short Name Stack View">
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="LwK-pt-NbH" userLabel="Area Stack View">
                                 <rect key="frame" x="0.0" y="25.5" width="268" height="16"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S.Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OjS-TZ-0aE">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Area" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OjS-TZ-0aE">
                                         <rect key="frame" x="0.0" y="0.0" width="60" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="oeF-Wt-d0d"/>
@@ -205,6 +206,8 @@
             <connections>
                 <outlet property="addressLabel" destination="gk1-Gj-G7L" id="HaL-PF-DEh"/>
                 <outlet property="addressStackView" destination="nd5-hj-OML" id="PpQ-RG-hfq"/>
+                <outlet property="areaLabel" destination="SZd-gc-Vrc" id="OMX-FS-nGT"/>
+                <outlet property="areaStackView" destination="LwK-pt-NbH" id="zXN-G1-AlQ"/>
                 <outlet property="emailLabel" destination="lJF-hI-d10" id="uEc-lJ-YX1"/>
                 <outlet property="emailStackView" destination="GNY-74-ykh" id="66O-7N-g0W"/>
                 <outlet property="foundedLabel" destination="ska-Ev-jvZ" id="6S2-yP-oMH"/>
@@ -213,8 +216,6 @@
                 <outlet property="nameStackView" destination="g0n-h5-FhL" id="2Un-XO-EBZ"/>
                 <outlet property="phoneLabel" destination="qNG-0R-waL" id="uwi-kf-OCK"/>
                 <outlet property="phoneStackView" destination="brz-Zq-x1m" id="PAJ-AR-YWG"/>
-                <outlet property="shortNameLabel" destination="SZd-gc-Vrc" id="OMX-FS-nGT"/>
-                <outlet property="shortNameStacklView" destination="LwK-pt-NbH" id="zXN-G1-AlQ"/>
                 <outlet property="teamLogoImageView" destination="pug-8J-z9W" id="pg7-4q-upk"/>
                 <outlet property="venueLabel" destination="PEf-YN-HEH" id="fJz-yS-TAT"/>
                 <outlet property="venueStackView" destination="u35-kp-FXg" id="mrp-ZH-Vcb"/>

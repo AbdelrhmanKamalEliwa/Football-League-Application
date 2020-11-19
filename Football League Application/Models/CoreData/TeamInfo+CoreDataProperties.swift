@@ -2,7 +2,7 @@
 //  TeamInfo+CoreDataProperties.swift
 //  Football League Application
 //
-//  Created by Abdelrhman Eliwa on 11/17/20.
+//  Created by Abdelrhman Eliwa on 11/19/20.
 //
 //
 
@@ -19,13 +19,13 @@ extension TeamInfo {
     @NSManaged public var teamAddress: String?
     @NSManaged public var teamEmail: String?
     @NSManaged public var teamFounded: Int64
+    @NSManaged public var teamId: Int64
     @NSManaged public var teamImageLogo: String?
     @NSManaged public var teamName: String?
     @NSManaged public var teamPhone: String?
-    @NSManaged public var teamShortName: String?
+    @NSManaged public var teamArea: String?
     @NSManaged public var teamVenue: String?
     @NSManaged public var teamWebsite: String?
-    @NSManaged public var teamId: Int64
     @NSManaged public var playersInfo: NSSet?
 
 }

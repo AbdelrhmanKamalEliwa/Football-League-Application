@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19H15" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Leagues" representedClassName="Leagues" syncable="YES">
+        <attribute name="areaName" optional="YES" attributeType="String"/>
+        <attribute name="endDate" optional="YES" attributeType="String"/>
         <attribute name="leagueId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="leagueName" optional="YES" attributeType="String"/>
-        <attribute name="leagueShortName" optional="YES" attributeType="String"/>
-        <attribute name="numberOfGames" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="numberOfTeams" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="String"/>
         <relationship name="teams" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Teams" inverseName="league" inverseEntity="Teams"/>
     </entity>
     <entity name="PlayersInfo" representedClassName="PlayersInfo" syncable="YES">
@@ -17,13 +17,13 @@
     </entity>
     <entity name="TeamInfo" representedClassName="TeamInfo" syncable="YES">
         <attribute name="teamAddress" optional="YES" attributeType="String"/>
+        <attribute name="teamArea" optional="YES" attributeType="String"/>
         <attribute name="teamEmail" optional="YES" attributeType="String"/>
         <attribute name="teamFounded" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="teamId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="teamImageLogo" optional="YES" attributeType="String"/>
         <attribute name="teamName" optional="YES" attributeType="String"/>
         <attribute name="teamPhone" optional="YES" attributeType="String"/>
-        <attribute name="teamShortName" optional="YES" attributeType="String"/>
         <attribute name="teamVenue" optional="YES" attributeType="String"/>
         <attribute name="teamWebsite" optional="YES" attributeType="String"/>
         <relationship name="playersInfo" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PlayersInfo"/>

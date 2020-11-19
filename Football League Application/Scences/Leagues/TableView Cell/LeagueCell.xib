@@ -11,106 +11,111 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="LeagueCell" customModule="Football_League_Application" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="358" height="161"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="134" id="KGk-i7-Jjw" customClass="LeagueCell" customModule="Football_League_Application" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="358" height="134"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="358" height="161"/>
+                <rect key="frame" x="0.0" y="0.0" width="358" height="134"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.forward.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="q4h-DC-Z6C">
-                        <rect key="frame" x="303" y="68.5" width="25" height="24"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="q4h-DC-Z6C">
+                        <rect key="frame" x="313" y="56.5" width="25" height="21.5"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="25" id="1QN-BJ-3Wx"/>
-                            <constraint firstAttribute="width" constant="25" id="4W2-UW-85R"/>
+                            <constraint firstAttribute="height" constant="25" id="088-e2-4uP"/>
+                            <constraint firstAttribute="width" constant="25" id="cza-zJ-0k0"/>
                         </constraints>
                     </imageView>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="jEt-dB-ioJ">
-                        <rect key="frame" x="15" y="15" width="243" height="131"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="O0t-h7-Te9" userLabel="Main Stack View">
+                        <rect key="frame" x="15" y="15" width="278" height="104"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="q0V-Vf-nTX" userLabel="Name Stack View">
-                                <rect key="frame" x="0.0" y="0.0" width="243" height="65"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="q0V-Vf-nTX" userLabel="Main Info Stack View">
+                                <rect key="frame" x="0.0" y="0.0" width="278" height="48"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="League Long Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="N0d-w1-7QD">
-                                        <rect key="frame" x="0.0" y="0.0" width="243" height="32.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="278" height="21.5"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                                         <color key="textColor" name="AppGray"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="League short Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="TaG-gA-bAW">
-                                        <rect key="frame" x="0.0" y="32.5" width="243" height="32.5"/>
+                                        <rect key="frame" x="0.0" y="26.5" width="278" height="21.5"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
                                         <color key="textColor" name="AppGray"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0H5-uR-s8j" userLabel="Number of Teams Stack View">
-                                <rect key="frame" x="0.0" y="80" width="243" height="18"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="gej-3p-SeH" userLabel="Date Stack View">
+                                <rect key="frame" x="0.0" y="63" width="278" height="41"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of teams" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="1Kd-9i-a4z">
-                                        <rect key="frame" x="0.0" y="0.0" width="116.5" height="18"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
-                                        <color key="textColor" name="AppGray"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Dro-1o-9EU">
-                                        <rect key="frame" x="126.5" y="0.0" width="116.5" height="18"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
-                                        <color key="textColor" name="AppGray"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="YRt-tK-R1U" userLabel="Number of games Stack View">
-                                <rect key="frame" x="0.0" y="113" width="243" height="18"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of games" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="r83-km-peX">
-                                        <rect key="frame" x="0.0" y="0.0" width="116.5" height="18"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
-                                        <color key="textColor" name="AppGray"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="4iC-Mk-c4q">
-                                        <rect key="frame" x="126.5" y="0.0" width="116.5" height="18"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
-                                        <color key="textColor" name="AppGray"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0H5-uR-s8j" userLabel="Start Date Stack View">
+                                        <rect key="frame" x="0.0" y="0.0" width="278" height="18"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Date" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="1Kd-9i-a4z">
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="18"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="5Qb-nv-9yd"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                                <color key="textColor" name="AppGray"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Dro-1o-9EU">
+                                                <rect key="frame" x="110" y="0.0" width="168" height="18"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                                <color key="textColor" name="AppGray"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="YRt-tK-R1U" userLabel="End Date Stack View">
+                                        <rect key="frame" x="0.0" y="23" width="278" height="18"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End Date" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="r83-km-peX">
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="18"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="Uba-Xn-N7C"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                                <color key="textColor" name="AppGray"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="4iC-Mk-c4q">
+                                                <rect key="frame" x="110" y="0.0" width="168" height="18"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                                <color key="textColor" name="AppGray"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="0H5-uR-s8j" secondAttribute="trailing" id="7NC-Ao-8BB"/>
-                            <constraint firstAttribute="trailing" secondItem="YRt-tK-R1U" secondAttribute="trailing" id="Q6t-Yg-Wcv"/>
-                            <constraint firstItem="0H5-uR-s8j" firstAttribute="leading" secondItem="jEt-dB-ioJ" secondAttribute="leading" id="UPE-hk-le3"/>
-                            <constraint firstItem="q0V-Vf-nTX" firstAttribute="leading" secondItem="jEt-dB-ioJ" secondAttribute="leading" id="bCy-mV-Kj1"/>
-                            <constraint firstAttribute="trailing" secondItem="q0V-Vf-nTX" secondAttribute="trailing" id="geO-EL-Y5W"/>
-                            <constraint firstItem="YRt-tK-R1U" firstAttribute="leading" secondItem="jEt-dB-ioJ" secondAttribute="leading" id="oH6-3o-Gr8"/>
-                        </constraints>
                     </stackView>
                 </subviews>
                 <color key="backgroundColor" name="AppBlack2"/>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="jEt-dB-ioJ" secondAttribute="bottom" constant="15" id="D6q-Ua-neB"/>
-                    <constraint firstItem="jEt-dB-ioJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="blE-Ms-TTn"/>
-                    <constraint firstItem="q4h-DC-Z6C" firstAttribute="centerY" secondItem="jEt-dB-ioJ" secondAttribute="centerY" id="ggP-yn-l30"/>
-                    <constraint firstItem="jEt-dB-ioJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="jvA-Qs-VBl"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="q4h-DC-Z6C" secondAttribute="trailing" constant="10" id="s8t-PR-708"/>
+                    <constraint firstItem="q4h-DC-Z6C" firstAttribute="centerY" secondItem="O0t-h7-Te9" secondAttribute="centerY" id="ACI-5Z-2na"/>
+                    <constraint firstAttribute="bottom" secondItem="O0t-h7-Te9" secondAttribute="bottom" constant="15" id="HD4-Tk-zMB"/>
+                    <constraint firstItem="O0t-h7-Te9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="bvn-ko-QIU"/>
+                    <constraint firstItem="q4h-DC-Z6C" firstAttribute="leading" secondItem="O0t-h7-Te9" secondAttribute="trailing" constant="20" id="pqP-Gf-WX5"/>
+                    <constraint firstAttribute="trailing" secondItem="q4h-DC-Z6C" secondAttribute="trailing" constant="20" id="rWS-fo-V36"/>
+                    <constraint firstItem="O0t-h7-Te9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="s2G-lI-06l"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="longNameLabel" destination="N0d-w1-7QD" id="1IA-Ql-rkQ"/>
-                <outlet property="numberOfGamesLabel" destination="4iC-Mk-c4q" id="Pml-y8-PTH"/>
-                <outlet property="numberOfTeamsLabel" destination="Dro-1o-9EU" id="PS4-ZD-6S1"/>
-                <outlet property="shortNameLabel" destination="TaG-gA-bAW" id="rQ7-ch-K0Y"/>
+                <outlet property="areaLabel" destination="TaG-gA-bAW" id="rQ7-ch-K0Y"/>
+                <outlet property="chevronIcon" destination="q4h-DC-Z6C" id="mat-Sv-G8m"/>
+                <outlet property="endDateLabel" destination="4iC-Mk-c4q" id="Pml-y8-PTH"/>
+                <outlet property="nameLabel" destination="N0d-w1-7QD" id="1IA-Ql-rkQ"/>
+                <outlet property="startDateLabel" destination="Dro-1o-9EU" id="PS4-ZD-6S1"/>
             </connections>
-            <point key="canvasLocation" x="136.23188405797103" y="161.04910714285714"/>
+            <point key="canvasLocation" x="107.24637681159422" y="90.401785714285708"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="arrow.forward.circle" catalog="system" width="128" height="121"/>
+        <image name="chevron.right" catalog="system" width="96" height="128"/>
         <namedColor name="AppBlack2">
             <color red="0.12999999523162842" green="0.12999999523162842" blue="0.12999999523162842" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

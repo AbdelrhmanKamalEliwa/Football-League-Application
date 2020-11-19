@@ -10,10 +10,11 @@ import UIKit
 class LeagueCell: UITableViewCell {
 
     // MARK: - Properties
-    @IBOutlet private weak var longNameLabel: UILabel!
-    @IBOutlet private weak var shortNameLabel: UILabel!
-    @IBOutlet private weak var numberOfTeamsLabel: UILabel!
-    @IBOutlet private weak var numberOfGamesLabel: UILabel!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var areaLabel: UILabel!
+    @IBOutlet private weak var startDateLabel: UILabel!
+    @IBOutlet private weak var endDateLabel: UILabel!
+    @IBOutlet private weak var chevronIcon: UIImageView!
     
     // MARK: - Lifecycle
     override func awakeFromNib() {
@@ -23,20 +24,24 @@ class LeagueCell: UITableViewCell {
 
 // MARK: - Display Cell Data
 extension LeagueCell: LeaguesCellView {
-    func displayLongName(_ name: String) {
-        longNameLabel.text = name
+    func setChevronIconStatus(isHidden: Bool) {
+        chevronIcon.isHidden = isHidden
     }
     
-    func displayShortName(_ name: String, isHidden: Bool) {
-        shortNameLabel.text = name
-        shortNameLabel.isHidden = isHidden
+    func displayName(_ name: String) {
+        nameLabel.text = name
     }
     
-    func displayNumberOfTeams(_ number: String) {
-        numberOfTeamsLabel.text = number
+    func displayArea(_ name: String, isHidden: Bool) {
+        areaLabel.text = name
+        areaLabel.isHidden = isHidden
     }
     
-    func displayNumberOfGames(_ number: String) {
-        numberOfGamesLabel.text = number
+    func displayStartDate(_ number: String) {
+        startDateLabel.text = number
+    }
+    
+    func displayEndDate(_ number: String) {
+        endDateLabel.text = number
     }
 }

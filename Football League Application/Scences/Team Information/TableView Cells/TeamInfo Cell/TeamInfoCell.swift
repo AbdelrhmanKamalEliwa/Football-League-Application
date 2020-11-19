@@ -13,8 +13,8 @@ class TeamInfoCell: UITableViewCell {
     @IBOutlet weak var teamLogoImageView: UIImageView!
     @IBOutlet private weak var nameStackView: UIStackView!
     @IBOutlet private weak var nameLabel: UILabel!
-    @IBOutlet private weak var shortNameStacklView: UIStackView!
-    @IBOutlet private weak var shortNameLabel: UILabel!
+    @IBOutlet private weak var areaStackView: UIStackView!
+    @IBOutlet private weak var areaLabel: UILabel!
     @IBOutlet private weak var addressStackView: UIStackView!
     @IBOutlet private weak var addressLabel: UILabel!
     @IBOutlet private weak var phoneStackView: UIStackView!
@@ -60,9 +60,9 @@ extension TeamInfoCell: TeamInfoCellView {
         nameLabel.text = name
     }
     
-    func displayTeamShortName(_ shortName: String, isHidden: Bool) {
-        shortNameStacklView.isHidden = isHidden
-        shortNameLabel.text = shortName
+    func displayTeamArea(_ name: String, isHidden: Bool) {
+        areaStackView.isHidden = isHidden
+        areaLabel.text = name
     }
     
     func displayTeamAddress(_ address: String, isHidden: Bool) {

@@ -2,7 +2,7 @@
 //  Teams+CoreDataProperties.swift
 //  Football League Application
 //
-//  Created by Abdelrhman Eliwa on 11/17/20.
+//  Created by Abdelrhman Eliwa on 11/19/20.
 //
 //
 
@@ -16,13 +16,13 @@ extension Teams {
         return NSFetchRequest<Teams>(entityName: "Teams")
     }
 
+    @NSManaged public var leagueId: Int64
     @NSManaged public var teamId: Int64
     @NSManaged public var teamLogo: String?
     @NSManaged public var teamName: String?
     @NSManaged public var teamShortName: String?
-    @NSManaged public var leagueId: Int64
-    @NSManaged public var teamInfo: TeamInfo?
     @NSManaged public var league: Leagues?
+    @NSManaged public var teamInfo: TeamInfo?
 
 }
 
