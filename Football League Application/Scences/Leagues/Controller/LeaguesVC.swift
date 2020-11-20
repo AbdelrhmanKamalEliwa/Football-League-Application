@@ -12,6 +12,7 @@ class LeaguesVC: BaseWireframe {
     // MARK: - Properties
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var competitionsSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var competitionsSegmentedControlBottomConstraint: NSLayoutConstraint!
     internal var presenter: LeaguesVCPresenter?
     private let interactor = LeaguesInteractor()
     private let router = LeaguesRouter()
@@ -92,5 +93,18 @@ extension LeaguesVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter?.didSelectRow(at: indexPath.row)
+    }
+}
+
+// MARK: - Competitions Segmented Control Animation
+extension LeaguesVC {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if tableView.panGestureRecognizer.translation(in: self.view).y < 0 {
+            competitionsSegmentedControlBottomConstraint.constant = -100
+            UIView.animate(withDuration: 0.5) { [weak self] in self?.view.layoutIfNeeded() }
+        } else {
+            competitionsSegmentedControlBottomConstraint.constant = 20
+            UIView.animate(withDuration: 0.5) { [weak self] in self?.view.layoutIfNeeded() }
+        }
     }
 }

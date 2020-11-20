@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LeaguesVC" customModule="Football_League_Application" customModuleProvider="target">
             <connections>
                 <outlet property="competitionsSegmentedControl" destination="a3g-TV-Dpl" id="TQB-EQ-7Lo"/>
+                <outlet property="competitionsSegmentedControlBottomConstraint" destination="7AP-aB-j5h" id="7a2-mK-nnT"/>
                 <outlet property="tableView" destination="w0t-Cx-CVI" id="CwS-rs-CJf"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
