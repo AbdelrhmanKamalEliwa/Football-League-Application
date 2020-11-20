@@ -61,7 +61,7 @@ class TeamInfoCoreDataManager {
         let newTeamInfo = NSEntityDescription.insertNewObject(forEntityName: "TeamInfo", into: managedContext)
         newTeamInfo.setValue(teamInfo.id, forKeyPath: "teamId")
         newTeamInfo.setValue(teamInfo.name, forKeyPath: "teamName")
-        newTeamInfo.setValue(teamInfo.shortName, forKeyPath: "teamShortName")
+        newTeamInfo.setValue(teamInfo.area?.name, forKeyPath: "teamArea")
         newTeamInfo.setValue(teamInfo.crestURL, forKeyPath: "teamImageLogo")
         newTeamInfo.setValue(teamInfo.address, forKeyPath: "teamAddress")
         newTeamInfo.setValue(teamInfo.email, forKeyPath: "teamEmail")
@@ -114,7 +114,7 @@ class TeamInfoCoreDataManager {
                 }
                 fetchedTeamInfo?.setValue(teamInfo.id, forKeyPath: "teamId")
                 fetchedTeamInfo?.setValue(teamInfo.name, forKeyPath: "teamName")
-                fetchedTeamInfo?.setValue(teamInfo.shortName, forKeyPath: "teamShortName")
+                fetchedTeamInfo?.setValue(teamInfo.area?.name, forKeyPath: "teamArea")
                 fetchedTeamInfo?.setValue(teamInfo.crestURL, forKeyPath: "teamImageLogo")
                 fetchedTeamInfo?.setValue(teamInfo.address, forKeyPath: "teamAddress")
                 fetchedTeamInfo?.setValue(teamInfo.email, forKeyPath: "teamEmail")

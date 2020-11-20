@@ -32,9 +32,15 @@ class LeaguesVCPresenter {
     private weak var view: LeaguesView?
     private let interactor: LeaguesInteractor
     private let router: LeaguesRouter
-    private var leaguesData: [Competition] = []
+    private var leagues: [Competition] = []
     private var cachedLeagues: [Leagues] = []
+    private var availableLeagues: [Competition] = []
+    private var availableCachedLeagues: [Leagues] = []
     private var cach = false
+    private var available = false
+    private let availableLeaguesIDs = [
+        2000, 2001, 2002, 2003, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021
+    ]
     
     // MARK: - Init
     init(view: LeaguesView?, interactor: LeaguesInteractor, router: LeaguesRouter) {
@@ -57,6 +63,7 @@ class LeaguesVCPresenter {
                 self.cach = true
                 DispatchQueue.main.async {
                     self.cachedLeagues = self.interactor.loadCachedData()
+                    self.setAvailableCachedLeagues()
                     guard !self.cachedLeagues.isEmpty else {
                         self.view?.showError(error: error.localizedDescription)
                         return
@@ -65,7 +72,8 @@ class LeaguesVCPresenter {
                 }
             } else {
                 guard let leagues = leagues else { return }
-                self.leaguesData = leagues.competitions
+                self.leagues = leagues.competitions
+                self.setAvailableLeagues()
                 self.cach = false
                 self.view?.fetchDataSuccess()
                 DispatchQueue.main.async {
@@ -75,36 +83,76 @@ class LeaguesVCPresenter {
         }
     }
     
+    func setAvailableStatus(_ segmentedControlIndex: Int) {
+        segmentedControlIndex == 0 ? (available = false) : (available = true)
+        view?.fetchDataSuccess()
+    }
+    
+    private func setAvailableLeagues() {
+        for league in leagues {
+            if availableLeaguesIDs.contains(league.id) {
+                availableLeagues.append(league)
+            }
+        }
+    }
+    
+    private func setAvailableCachedLeagues() {
+        for league in cachedLeagues {
+            if availableLeaguesIDs.contains(Int(league.leagueId)) {
+                availableCachedLeagues.append(league)
+            }
+        }
+    }
+    
     func numberOfLeagues() -> Int {
-        cach ? cachedLeagues.count : leaguesData.count
+        if available {
+            return cach ? availableCachedLeagues.count : availableLeagues.count
+        } else {
+            return cach ? cachedLeagues.count : leagues.count
+        }
     }
     
     func cellConfiguration(_ cell: LeaguesCellView, for index: Int) {
         if cach {
-            let league = cachedLeagues[index]
+            let league = available ? availableCachedLeagues[index] : cachedLeagues[index]
             cell.displayName(league.leagueName ?? "")
-            
             if let areaName = league.areaName {
                 cell.displayArea(areaName, isHidden: false)
             } else {
                 cell.displayArea("", isHidden: true)
             }
-        } else {
-            let league = leaguesData[index]
-            cell.displayName(league.name)
+            cell.displayStartDate(league.startDate ?? "")
+            cell.displayEndDate(league.endDate ?? "")
+            let isHidden = availableLeaguesIDs.contains(Int(league.leagueId))
+            cell.setChevronIconStatus(isHidden: !isHidden)
             
+        } else {
+            let league = available ? availableLeagues[index] : leagues[index]
+            cell.displayName(league.name)
             if let shortName = league.code {
                 cell.displayArea(shortName, isHidden: false)
             } else {
                 cell.displayArea("", isHidden: true)
             }
+            cell.displayStartDate(league.currentSeason?.startDate ?? "")
+            cell.displayEndDate(league.currentSeason?.endDate ?? "")
+            let isHidden = availableLeaguesIDs.contains(league.id)
+            cell.setChevronIconStatus(isHidden: !isHidden)
         }
-        cell.displayStartDate("0")
-        cell.displayEndDate("0")
     }
     
     func didSelectRow(at index: Int) {
-        let leagueId = cach ? Int(cachedLeagues[index].leagueId) : leaguesData[index].id
-        router.navigateToLeagueDetailsScreen(from: view, leagueId: leagueId)
+        if available {
+            let leagueId = cach ? Int(availableCachedLeagues[index].leagueId) : availableLeagues[index].id
+            router.navigateToLeagueDetailsScreen(from: view, leagueId: leagueId)
+        } else {
+            let leagueId = cach ? Int(cachedLeagues[index].leagueId) : leagues[index].id
+            if availableLeaguesIDs.contains(leagueId) {
+                router.navigateToLeagueDetailsScreen(from: view, leagueId: leagueId)
+            } else {
+                view?.showError(error: "This competition is unavailable")
+            }
+        }
+        
     }
 }

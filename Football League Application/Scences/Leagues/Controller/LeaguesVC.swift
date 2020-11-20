@@ -27,6 +27,10 @@ class LeaguesVC: BaseWireframe {
         setupTableView()
         presenter?.viewDidLoad()
     }
+    
+    @IBAction func competitionsSegmentedControlPressed(_ sender: UISegmentedControl) {
+        presenter?.setAvailableStatus(competitionsSegmentedControl.selectedSegmentIndex)
+    }
 }
 
 // MARK: - Presenter Delegate

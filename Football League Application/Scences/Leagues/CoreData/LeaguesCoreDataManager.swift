@@ -35,9 +35,9 @@ class LeaguesCoreDataManager {
             let newLeague = NSEntityDescription.insertNewObject(forEntityName: "Leagues", into: managedContext)
             newLeague.setValue(league.id, forKeyPath: "leagueId")
             newLeague.setValue(league.name, forKeyPath: "leagueName")
-            newLeague.setValue(league.code, forKeyPath: "leagueShortName")
-            newLeague.setValue(0, forKeyPath: "numberOfGames")
-            newLeague.setValue(0, forKeyPath: "numberOfTeams")
+            newLeague.setValue(league.code, forKeyPath: "areaName")
+            newLeague.setValue(league.currentSeason?.startDate, forKeyPath: "startDate")
+            newLeague.setValue(league.currentSeason?.endDate, forKeyPath: "endDate")
         }
         do {
             try managedContext.save()
@@ -57,9 +57,9 @@ class LeaguesCoreDataManager {
                 for i in 0...result.count - 1 {
                     result[i].setValue(leagues[i].id, forKeyPath: "leagueId")
                     result[i].setValue(leagues[i].name, forKeyPath: "leagueName")
-                    result[i].setValue(leagues[i].code, forKeyPath: "leagueShortName")
-                    result[i].setValue(0, forKeyPath: "numberOfGames")
-                    result[i].setValue(0, forKeyPath: "numberOfTeams")
+                    result[i].setValue(leagues[i].code, forKeyPath: "areaName")
+                    result[i].setValue(leagues[i].currentSeason?.startDate, forKeyPath: "startDate")
+                    result[i].setValue(leagues[i].currentSeason?.endDate, forKeyPath: "endDate")
                 }
             }
             try managedContext.save()
