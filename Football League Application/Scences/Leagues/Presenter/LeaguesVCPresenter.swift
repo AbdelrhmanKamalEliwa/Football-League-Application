@@ -38,9 +38,7 @@ class LeaguesVCPresenter {
     private var availableCachedLeagues: [Leagues] = []
     private var cach = false
     private var available = false
-    private let availableLeaguesIDs = [
-        2000, 2001, 2002, 2003, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021
-    ]
+    private let availableLeaguesIDs = AvailableLeagues().availableLeaguesIDs
     
     // MARK: - Init
     init(view: LeaguesView?, interactor: LeaguesInteractor, router: LeaguesRouter) {
@@ -58,12 +56,13 @@ class LeaguesVCPresenter {
         view?.showIndicator()
         interactor.getLeagues { [weak self] (leagues, error) in
             guard let self = self else { return }
-            self.view?.hideIndicator()
+            
             if let error = error {
                 self.cach = true
                 DispatchQueue.main.async {
                     self.cachedLeagues = self.interactor.loadCachedData()
                     self.setAvailableCachedLeagues()
+                    self.view?.hideIndicator()
                     guard !self.cachedLeagues.isEmpty else {
                         self.view?.showError(error: error.localizedDescription)
                         return
@@ -74,6 +73,7 @@ class LeaguesVCPresenter {
                 guard let leagues = leagues else { return }
                 self.leagues = leagues.competitions
                 self.setAvailableLeagues()
+                self.view?.hideIndicator()
                 self.cach = false
                 self.view?.fetchDataSuccess()
                 DispatchQueue.main.async {

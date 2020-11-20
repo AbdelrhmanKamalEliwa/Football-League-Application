@@ -23,11 +23,11 @@ class LeaguesVC: BaseWireframe {
             view: self,
             interactor: interactor,
             router: router)
-        setupNavBar(navBarTitle: .Leagues)
         setupTableView()
         presenter?.viewDidLoad()
     }
     
+    // MARK: - Methods
     @IBAction func competitionsSegmentedControlPressed(_ sender: UISegmentedControl) {
         presenter?.setAvailableStatus(competitionsSegmentedControl.selectedSegmentIndex)
     }

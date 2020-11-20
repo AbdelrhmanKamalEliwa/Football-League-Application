@@ -8,12 +8,8 @@
 import UIKit
 
 class LeagueDetailsRouter {
-    private enum Constants {
-        static let nibName = "LeagueDetailsVC"
-    }
-    
     class func createLeagueDetailsVC(leagueId: Int) -> UIViewController {
-        let leagueDetailsVC = LeagueDetailsVC(nibName: Constants.nibName, bundle: nil)
+        let leagueDetailsVC = LeagueDetailsVC(navBarTitle: .LeagueDetails)
         let interactor = LeagueDetailsInteractor()
         let router = LeagueDetailsRouter()
         let presenter = LeagueDetailsVCPresenter(

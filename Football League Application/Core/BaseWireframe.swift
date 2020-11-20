@@ -7,12 +7,36 @@
 
 import UIKit
 
-class BaseWireframe: UIViewController {
+// MARK: - NavBarTitleProtocol
+protocol NavBarTitleProtocol {
+    var navBarTitle: AppScreens { set get }
+}
+
+// MARK: - BaseWireFrame (Base ViewController)
+class BaseWireframe: UIViewController, NavBarTitleProtocol {
+    internal var navBarTitle: AppScreens
+    
     //MARK: Properties
     final var navBar: UINavigationBar {
         return self.navigationController!.navigationBar
     }
-
+    
+    // MARK: Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupNavBar(navBarTitle: navBarTitle)
+    }
+    
+    // MARK: inits
+    init(navBarTitle: AppScreens) {
+        self.navBarTitle = navBarTitle
+        super.init(nibName: String(describing: type(of: self)), bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     //MARK: Setup NavBar
     func setupNavBar(navBarTitle: AppScreens) {
         navBar.barTintColor = UIColor(named: "AppYellow")!

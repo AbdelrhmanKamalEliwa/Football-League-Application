@@ -8,12 +8,8 @@
 import UIKit
 
 class TeamInformationRouter {
-    private enum Constants {
-        static let nibName = "TeamInformationVC"
-    }
-    
     class func createTeamInformationVC(teamId: Int) -> UIViewController {
-        let teamInformationVC = TeamInformationVC(nibName: Constants.nibName, bundle: nil)
+        let teamInformationVC = TeamInformationVC(navBarTitle: .TeamInformation)
         let interactor = TeamInformationInteractor()
         let router = TeamInformationRouter()
         let presenter = TeamInformationVCPresenter(

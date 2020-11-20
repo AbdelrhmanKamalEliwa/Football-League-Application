@@ -16,8 +16,6 @@ class TeamInformationVC: BaseWireframe {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.isHidden = true
-        setupNavBar(navBarTitle: .TeamInformation)
         setupTableView()
         presenter?.viewDidLoad()
     }
@@ -64,6 +62,7 @@ extension TeamInformationVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     private func setupTableView() {
+        tableView.isHidden = true
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(

@@ -16,7 +16,6 @@ class LeagueDetailsVC: BaseWireframe {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavBar(navBarTitle: .LeagueDetails)
         setupCollectionView()
         presenter?.viewDidLoad()
     }

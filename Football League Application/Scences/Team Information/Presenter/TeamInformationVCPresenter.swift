@@ -46,7 +46,7 @@ class TeamInformationVCPresenter {
     private var teamInfoData: TeamInfoModel?
     private var cachedTeamInfoData: TeamInfo?
     private var cachedTeamInfoPlayers: [PlayersInfo] = []
-    // MARK: - Init
+    // MARK: - init
     init(view: TeamInformationView?, interactor: TeamInformationInteractor, router: TeamInformationRouter, teamId: Int) {
         self.view = view
         self.interactor = interactor
@@ -100,10 +100,6 @@ class TeamInformationVCPresenter {
     
     func numberOfRowsInSection(for section: Int) -> Int {
         section == 0 ? 1 : (cach ? cachedTeamInfoPlayers.count : (teamInfoData?.squad?.count ?? 0))
-//        if section == 0 { return 1 }
-//        else {
-//            return cach ? cachedTeamInfoPlayers.count : (teamInfoData?.squad?.count ?? 0)
-//        }
     }
     
     // MARK: - TeamInfo

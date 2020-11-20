@@ -9,8 +9,7 @@ import Foundation
 
 class LeagueDetailsInteractor {
     private let networkManager = NetworkManager()
-    private let teamsCoreDataManager = TeamsCoreDataManager()
-    private let defaults = UserDefaults.standard
+    private let coreDataManager = CoreDataManager()
     
     func getLeagueTeams(for leagueId: Int, completionHandler: @escaping (LeagueTeamsModel?, Error?) -> ()) {
         let headers = ["X-Auth-Token": EndPointRouter.APIKey]
@@ -31,21 +30,10 @@ class LeagueDetailsInteractor {
     }
     
     func cachData(_ teams: [Team], _ leagueId: Int) {
-        if let teamsCachStatus = defaults.object(forKey: "TeamsCachingStatus\(leagueId)") as? Bool {
-            if teamsCachStatus {
-                teamsCoreDataManager.updateTeams(teams, for: leagueId)
-                defaults.setValue(true, forKey: "TeamsCachingStatus\(leagueId)")
-            } else {
-                teamsCoreDataManager.saveTeams(teams, for: leagueId)
-                defaults.setValue(true, forKey: "TeamsCachingStatus\(leagueId)")
-            }
-        } else {
-            teamsCoreDataManager.saveTeams(teams, for: leagueId)
-            defaults.setValue(true, forKey: "TeamsCachingStatus\(leagueId)")
-        }
+        coreDataManager.cachTeamsData(teams, leagueId)
     }
     
     func loadCachedData(for leagueId: Int) -> [Teams] {
-        teamsCoreDataManager.loadTeams(for: leagueId)
+        coreDataManager.loadTeams(for: leagueId)
     }
 }
