@@ -23,6 +23,10 @@ class LeagueDetailsVC: BaseWireframe {
 
 // MARK: - Presenter Delegate
 extension LeagueDetailsVC: TeamsView {
+    func navigateToTeamInformationScreen(with teamId: Int) {
+        Navigator.navigate(form: self, to: .teamInformation(teamId: teamId))
+    }
+    
     func showIndicator() {
         SVProgressHUD.show()
     }

@@ -14,16 +14,11 @@ class LeaguesVC: BaseWireframe {
     @IBOutlet private weak var competitionsSegmentedControl: UISegmentedControl!
     @IBOutlet weak var competitionsSegmentedControlBottomConstraint: NSLayoutConstraint!
     internal var presenter: LeaguesVCPresenter?
-    private let interactor = LeaguesInteractor()
-    private let router = LeaguesRouter()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter = LeaguesVCPresenter(
-            view: self,
-            interactor: interactor,
-            router: router)
+        presenter = LeaguesVCPresenter(view: self)
         setupTableView()
         presenter?.viewDidLoad()
     }
@@ -36,6 +31,10 @@ class LeaguesVC: BaseWireframe {
 
 // MARK: - Presenter Delegate
 extension LeaguesVC: LeaguesView {
+    func navigateToLeagueDetailsScreen(with leagueId: Int) {
+        Navigator.navigate(form: self, to: .leagueDetails(leagueId: leagueId))
+    }
+    
     func showIndicator() {
         SVProgressHUD.show()
     }

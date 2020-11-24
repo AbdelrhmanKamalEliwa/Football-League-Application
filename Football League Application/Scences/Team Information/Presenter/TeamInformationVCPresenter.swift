@@ -39,18 +39,16 @@ protocol PlayerCellView {
 class TeamInformationVCPresenter {
     // MARK: - Properties
     private weak var view: TeamInformationView?
-    private let interactor: TeamInformationInteractor
-    private let router: TeamInformationRouter
+    private let networkManager = NetworkManager()
+    private let coreDataManager = CoreDataManager()
     private let teamId: Int
     private var cach = false
     private var teamInfoData: TeamInfoModel?
     private var cachedTeamInfoData: TeamInfo?
     private var cachedTeamInfoPlayers: [PlayersInfo] = []
     // MARK: - init
-    init(view: TeamInformationView?, interactor: TeamInformationInteractor, router: TeamInformationRouter, teamId: Int) {
+    init(view: TeamInformationView?, teamId: Int) {
         self.view = view
-        self.interactor = interactor
-        self.router = router
         self.teamId = teamId
     }
     
@@ -61,33 +59,37 @@ class TeamInformationVCPresenter {
     
     private func getTeams() {
         view?.showIndicator()
-        interactor.getTeamInfo(for: teamId) { [weak self] (teamInfo, error) in
+        let headers = ["X-Auth-Token": EndPointRouter.APIKey]
+        _ = networkManager.request(
+            url: EndPointRouter.getTeamInfo(for: String(teamId)),httpMethod: .get,
+            parameters: nil, headers: headers) { [weak self] (result: APIResult<TeamInfoModel>) in
             guard let self = self else { return }
             self.view?.hideIndicator()
-            if let error = error {
+            switch result {
+            case .success(let data):
+                self.teamInfoData = data
+                self.cach = false
+                self.view?.fetchDataSuccess()
+                DispatchQueue.main.async {
+                    self.coreDataManager.cachTeamInfoData(data, self.teamId)
+                }
+            case .failure(let error):
                 self.cach = true
                 DispatchQueue.main.async {
-                    self.cachedTeamInfoData = self.interactor.loadCachedTeamInfo(for: self.teamId)
-                    self.cachedTeamInfoPlayers = self.interactor.loadCachedTeamPlayers(for: self.teamId)
+                    self.cachedTeamInfoData = self.coreDataManager.loadTeamInfo(for: self.teamId)
+                    self.cachedTeamInfoPlayers = self.coreDataManager.loadTeamPlayers(for: self.teamId)
                     guard
                         let _ = self.cachedTeamInfoData,
                         !self.cachedTeamInfoPlayers.isEmpty else {
-                        self.view?.showError(error: error.localizedDescription)
+                        self.view?.showError(error: error?.localizedDescription ?? "")
                         return
                     }
                     self.view?.fetchDataSuccess()
                 }
-            } else {
-                guard let teamInfo = teamInfo else {
-                    self.view?.showError(error: "Data not founded")
-                    return
-                }
-                self.teamInfoData = teamInfo
-                self.cach = false
-                self.view?.fetchDataSuccess()
-                DispatchQueue.main.async {
-                    self.interactor.cachData(teamInfo, self.teamId)
-                }
+            case .decodingFailure(let error):
+                self.view?.showError(error: error?.localizedDescription ?? "")
+            case .badRequest(let error):
+                self.view?.showError(error: error?.localizedDescription ?? "")
             }
         }
     }

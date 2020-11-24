@@ -14,6 +14,7 @@ protocol TeamsView: class {
     func hideIndicator()
     func fetchDataSuccess()
     func showError(error: String)
+    func navigateToTeamInformationScreen(with teamId: Int)
 }
 
 // MARK: - TeamCellView Protocol
@@ -26,18 +27,16 @@ protocol TeamCellView {
 class LeagueDetailsVCPresenter {
     // MARK: - Properties
     private weak var view: TeamsView?
-    private let interactor: LeagueDetailsInteractor
-    private let router: LeagueDetailsRouter
+    private let networkManager = NetworkManager()
+    private let coreDataManager = CoreDataManager()
     private let leagueId: Int
     private var teamsData: [Team] = []
     private var cachedTeams: [Teams] = []
     private var cach = false
     
     // MARK: - Init
-    init(view: TeamsView?, interactor: LeagueDetailsInteractor, router: LeagueDetailsRouter, leagueId: Int) {
+    init(view: TeamsView?, leagueId: Int) {
         self.view = view
-        self.interactor = interactor
-        self.router = router
         self.leagueId = leagueId
     }
     
@@ -48,30 +47,38 @@ class LeagueDetailsVCPresenter {
     
     private func getTeams() {
         view?.showIndicator()
-        interactor.getLeagueTeams(for: leagueId) { [weak self] (leagueTeams, error) in
+        let headers = ["X-Auth-Token": EndPointRouter.APIKey]
+        _ = networkManager.request(
+            url: EndPointRouter.getTeams(for: String(leagueId)),httpMethod: .get,
+            parameters: nil, headers: headers) { [weak self] (result: APIResult<LeagueTeamsModel>) in
             guard let self = self else { return }
             self.view?.hideIndicator()
-            if let error = error {
+            switch result {
+            case .success(let data):
+                guard let teams = data.teams else {
+                    self.view?.showError(error: "Data not founded")
+                    return
+                }
+                self.teamsData = teams
+                self.cach = false
+                self.view?.fetchDataSuccess()
+                DispatchQueue.main.async {
+                    self.coreDataManager.cachTeamsData(teams, self.leagueId)
+                }
+            case .failure(let error):
                 self.cach = true
                 DispatchQueue.main.async {
-                    self.cachedTeams = self.interactor.loadCachedData(for: self.leagueId)
+                    self.cachedTeams = self.coreDataManager.loadTeams(for: self.leagueId)
                     guard !self.cachedTeams.isEmpty else {
-                        self.view?.showError(error: error.localizedDescription)
+                        self.view?.showError(error: error?.localizedDescription ?? "")
                         return
                     }
                     self.view?.fetchDataSuccess()
                 }
-            } else {
-                guard let leagueTeams = leagueTeams?.teams else {
-                    self.view?.showError(error: "Data not founded")
-                    return
-                }
-                self.teamsData = leagueTeams
-                self.cach = false
-                self.view?.fetchDataSuccess()
-                DispatchQueue.main.async {
-                    self.interactor.cachData(leagueTeams, self.leagueId)
-                }
+            case .decodingFailure(let error):
+                self.view?.showError(error: error?.localizedDescription ?? "")
+            case .badRequest(let error):
+                self.view?.showError(error: error?.localizedDescription ?? "")
             }
         }
     }
@@ -104,6 +111,6 @@ class LeagueDetailsVCPresenter {
     
     func didSelectItem(at item: Int) {
         let teamId = cach ? Int(cachedTeams[item].teamId) : teamsData[item].id
-        router.navigateToTeamInformationScreen(from: view, teamId: teamId)
+        view?.navigateToTeamInformationScreen(with: teamId)
     }
 }
